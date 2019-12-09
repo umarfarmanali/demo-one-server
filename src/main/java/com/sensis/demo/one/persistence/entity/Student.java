@@ -1,11 +1,21 @@
-package com.sensis.demo.one.bean;
+package com.sensis.demo.one.persistence.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="student")
 public class Student {
 
-	//Entity: Student 
-	
+	@Id
 	String registrationNumber;
+	
+	@Column(name="name")
 	String name;
+	
+	@Column(name="age")
 	int age;
 	
 	public String getRegistrationNumber() {

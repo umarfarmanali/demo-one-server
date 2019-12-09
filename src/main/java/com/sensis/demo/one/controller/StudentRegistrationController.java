@@ -1,27 +1,34 @@
 package com.sensis.demo.one.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sensis.demo.one.bean.Student;
-import com.sensis.demo.one.bean.StudentRegistration;
-import com.sensis.demo.one.bean.StudentRegistrationReply;
+import com.sensis.demo.one.persistence.entity.Student;
+import com.sensis.demo.one.service.StudentService;
 
 @RestController
 public class StudentRegistrationController {
 
+	@Autowired
+	StudentService studentService;
+	
 	@RequestMapping(value = "/register/student",method = RequestMethod.POST)
-	public StudentRegistrationReply registerStudent(@RequestBody Student student) {
+	public String registerStudent(@RequestBody Student student) {
 		
-		StudentRegistration.getInstance().add(student);
-		
-		StudentRegistrationReply reply = new StudentRegistrationReply();
-		reply.setRegistrationNumber(student.getRegistrationNumber());
-		reply.setName(student.getName());
-		reply.setAge(student.getAge());
-		reply.setRegistrationStatus("successful");
-		return reply;
+		try {
+			if(student != null) {
+				
+				studentService.add(student);
+				return "add successful";
+			} else {
+				return "add un-successful | parameter is empty";
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "add un-successful | exception: " + e.getMessage();
+		}
 	}
 }
