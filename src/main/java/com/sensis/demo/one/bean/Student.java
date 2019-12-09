@@ -2,6 +2,8 @@ package com.sensis.demo.one.bean;
 
 public class Student {
 
+	//Student Entity
+	
 	String registrationNumber;
 	String name;
 	int age;
