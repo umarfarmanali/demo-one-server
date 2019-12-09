@@ -2,7 +2,7 @@ package com.sensis.demo.one.bean;
 
 public class Student {
 
-	//Student Entity
+	//Entity: Student 
 	
 	String registrationNumber;
 	String name;
