@@ -9,6 +9,14 @@ import javax.persistence.Table;
 @Table(name="student")
 public class Student {
 
+	public Student() {}
+	
+	public Student(String registrationNumber, String name, int age) {
+		this.registrationNumber = registrationNumber;
+		this.name = name;
+		this.age = age;
+	}
+	
 	@Id
 	String registrationNumber;
 	

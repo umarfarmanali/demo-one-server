@@ -11,7 +11,7 @@ import com.sensis.demo.one.persistence.entity.Student;
 import com.sensis.demo.one.service.StudentService;
 
 @RestController
-public class StudentRetrieveController {
+public class StudentGetController {
 
 	@Autowired
 	StudentService studentService;

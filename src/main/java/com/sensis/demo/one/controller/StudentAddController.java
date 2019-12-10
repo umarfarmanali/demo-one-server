@@ -10,13 +10,13 @@ import com.sensis.demo.one.persistence.entity.Student;
 import com.sensis.demo.one.service.StudentService;
 
 @RestController
-public class StudentRegistrationController {
+public class StudentAddController {
 
 	@Autowired
 	StudentService studentService;
 	
-	@RequestMapping(value = "/register/student",method = RequestMethod.POST)
-	public String registerStudent(@RequestBody Student student) {
+	@RequestMapping(value = "/add/student",method = RequestMethod.POST)
+	public String addStudent(@RequestBody Student student) {
 		
 		try {
 			if(student != null) {
