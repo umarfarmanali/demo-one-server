@@ -1,6 +1,7 @@
 package com.sensis.demo.one.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,20 +16,22 @@ public class StudentAddController {
 	@Autowired
 	StudentService studentService;
 	
-	@RequestMapping(value = "/add/student",method = RequestMethod.POST)
+	@RequestMapping(value = "/add/student", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String addStudent(@RequestBody Student student) {
 		
+		String returnMessage;
 		try {
 			if(student != null) {
 				
 				studentService.add(student);
-				return "add successful";
+				returnMessage = "add successful";
 			} else {
-				return "add un-successful | parameter is empty";
+				returnMessage = "add un-successful | parameter is empty";
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
-			return "add un-successful | exception: " + e.getMessage();
+			returnMessage = "add un-successful | exception: " + e.getMessage();
 		}
+		return "{\"message\":\"" + returnMessage + "\"}";
 	}
 }

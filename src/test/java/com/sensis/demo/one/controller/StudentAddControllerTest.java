@@ -27,6 +27,6 @@ public class StudentAddControllerTest extends AbstractControllerTest {
 		assertEquals(200, status);
 		
 		String content = mvcResult.getResponse().getContentAsString();
-		assertTrue(content.equals("add successful"));
+		assertTrue(content.equals("{\"message\":\"add successful\"}"));
 	}
 }
