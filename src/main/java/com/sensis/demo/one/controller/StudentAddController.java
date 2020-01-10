@@ -1,5 +1,7 @@
 package com.sensis.demo.one.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,8 @@ import com.sensis.demo.one.service.StudentService;
 @RestController
 public class StudentAddController {
 
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	StudentService studentService;
 	
@@ -29,7 +33,7 @@ public class StudentAddController {
 				returnMessage = "add un-successful | parameter is empty";
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.warn(e.getMessage());
 			returnMessage = "add un-successful | exception: " + e.getMessage();
 		}
 		return "{\"message\":\"" + returnMessage + "\"}";

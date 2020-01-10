@@ -15,7 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Component
 public class ControllerLogAspect {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Around("@annotation(org.springframework.web.bind.annotation.RequestMapping) && execution(public * *(..))")
 	public Object log(final ProceedingJoinPoint proceedingJointPoint) throws Throwable{
@@ -27,10 +27,8 @@ public class ControllerLogAspect {
 		
 		try {
 			value = proceedingJointPoint.proceed();
-		}catch(Throwable t) {
-			throw t;
 		}finally {
-			logger.info("{} {} from {}", httpRequest.getMethod(), httpRequest.getRequestURI(), httpRequest.getRemoteAddr(), httpRequest.getHeader("user-id"));
+			log.info("{} {} from {}", httpRequest.getMethod(), httpRequest.getRequestURI(), httpRequest.getRemoteAddr());
 		}
 		
 		return value;

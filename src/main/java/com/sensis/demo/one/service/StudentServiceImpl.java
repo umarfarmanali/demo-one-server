@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public List<Student> getStudentList() {
 		
-		List<Student> studentList = new ArrayList<Student>();
+		List<Student> studentList = new ArrayList<>();
 		studentRepository.findAll().forEach(student -> studentList.add(student));
 		
 		return studentList;
