@@ -7,16 +7,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sensis.demo.one.dto.UserInfoDto;
 import com.sensis.demo.one.service.UserService;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
 private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -24,7 +27,29 @@ private Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/all")
+	public List<UserInfoDto> getAll(){
+		
+		try {
+			return userService.getList();
+		} catch(Exception e) {
+			log.warn(e.getMessage());
+			return new ArrayList<>();
+		}
+	}
+	
+	@GetMapping(value = "/byUsername/{username}")
+	public UserInfoDto getByUsername(@PathVariable("username") String username){
+		
+		try {
+			return userService.getByUsername(username);
+		} catch(Exception e) {
+			log.warn(e.getMessage());
+			return null;
+		}
+	}
+	
+	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String addStudent(@RequestBody UserInfoDto obj) {
 		
 		String returnMessage;
@@ -43,29 +68,7 @@ private Logger log = LoggerFactory.getLogger(this.getClass());
 		return "{\"message\":\"" + returnMessage + "\"}";
 	}
 	
-	@RequestMapping(value = "/user/all", method = RequestMethod.GET)
-	public List<UserInfoDto> getAll(){
-		
-		try {
-			return userService.getList();
-		} catch(Exception e) {
-			log.warn(e.getMessage());
-			return new ArrayList<>();
-		}
-	}
-	
-	@RequestMapping(value = "/user/byUsername/{username}", method = RequestMethod.GET)
-	public UserInfoDto getByUsername(@PathVariable("username") String username){
-		
-		try {
-			return userService.getByUsername(username);
-		} catch(Exception e) {
-			log.warn(e.getMessage());
-			return null;
-		}
-	}
-	
-	@RequestMapping(value="/user/delete/{username}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value="/delete/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deleteStudentRecord(@PathVariable("username") String username) {
 	
 		String returnMessage;
