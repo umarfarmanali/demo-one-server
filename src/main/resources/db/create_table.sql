@@ -4,7 +4,8 @@ CREATE TABLE public.user_info
 (
     id bigint NOT NULL DEFAULT nextval('user_info_id_seq'::regclass),
     username character varying(25) COLLATE pg_catalog."default" NOT NULL,
-    password character varying(25) COLLATE pg_catalog."default" NOT NULL,
+    password bytea NOT NULL,
+    salt bytea NOT NULL,
     active integer NOT NULL,
     CONSTRAINT user_info_pkey PRIMARY KEY (id),
     CONSTRAINT user_info_ukey_username UNIQUE (username)

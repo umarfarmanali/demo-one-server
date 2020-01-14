@@ -21,8 +21,8 @@ public class StudentGetController {
 	@Autowired
 	StudentService studentService;
 	
-	@RequestMapping(value = "/student/allstudent", method = RequestMethod.GET)
-	public List<Student> getAllStudents(){
+	@RequestMapping(value = "/student/all", method = RequestMethod.GET)
+	public List<Student> getAll(){
 		
 		try {
 			return studentService.getList();

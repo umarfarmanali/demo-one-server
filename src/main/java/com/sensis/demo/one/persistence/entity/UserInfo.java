@@ -3,30 +3,37 @@ package com.sensis.demo.one.persistence.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user_info")
+@Table(name = "user_info")
 public class UserInfo {
 
 	public UserInfo() {}
 	
-	public UserInfo(String username, String password, Integer active) {
+	public UserInfo(String username, byte[] password, byte[] salt, Integer active) {
 		this.username = username;
 		this.password = password;
+		this.salt = salt;
 		this.active = active;
 	}
 
 	@Id
-	@GeneratedValue
+	@Column(name = "id")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name = "username", unique = true)
 	private String username;
 	
 	@Column(name = "password")
-	private String password;
+	private byte[] password;
+	
+	@Column(name = "salt")
+	private byte[] salt;
 	
 	@Column(name = "active")
 	private Integer active;
@@ -43,11 +50,17 @@ public class UserInfo {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
+	public byte[] getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public void setPassword(byte[] password) {
 		this.password = password;
+	}
+	public byte[] getSalt() {
+		return salt;
+	}
+	public void setSalt(byte[] salt) {
+		this.salt = salt;
 	}
 	public Integer getActive() {
 		return active;

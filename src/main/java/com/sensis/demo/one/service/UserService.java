@@ -2,14 +2,15 @@ package com.sensis.demo.one.service;
 
 import java.util.List;
 
-import com.sensis.demo.one.persistence.entity.UserInfo;
+import com.sensis.demo.one.dto.UserInfoDto;
 
 public interface UserService {
 
-	public List<UserInfo> getList();
-	public UserInfo getByUsername(String username);
+	public List<UserInfoDto> getList();
+	public UserInfoDto getByUsername(String username);
 	
-	public void add(UserInfo obj);
-	public void update(UserInfo obj);
+	public void add(UserInfoDto obj) throws Exception;
+	public void update(UserInfoDto obj);
 	public void delete(Integer id);
+	public void deleteByUsername(String username);
 }
