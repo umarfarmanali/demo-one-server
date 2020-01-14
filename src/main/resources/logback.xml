@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
-	<property name="LOG_PATH" value="/home/umar/Personal/Development/logs" />
+	<property name="LOG_PATH" value="/home/umar/personal/development/logs" />
 	<property name="LOG_FILE" value="demo-one-server.log" />
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">

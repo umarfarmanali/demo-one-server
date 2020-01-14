@@ -16,30 +16,25 @@ public class StudentServiceImpl implements StudentService{
 	private StudentRepository studentRepository;
 	
 	@Override
-	public List<Student> getStudentList() {
+	public List<Student> getList() {
 		
-		List<Student> studentList = new ArrayList<>();
-		studentRepository.findAll().forEach(student -> studentList.add(student));
-		
-		return studentList;
+		List<Student> list = new ArrayList<>();
+		studentRepository.findAll().forEach(obj -> list.add(obj));
+		return list;
 	}
 
 	@Override
 	public void add(Student student) {
-		
 		studentRepository.save(student);
 	}
 
 	@Override
 	public void update(Student student) {
-		
 		studentRepository.save(student);
 	}
 
 	@Override
 	public void delete(String registrationNumber) {
-		
 		studentRepository.deleteById(registrationNumber);
 	}
-
 }

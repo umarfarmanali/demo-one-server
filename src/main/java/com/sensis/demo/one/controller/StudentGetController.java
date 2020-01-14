@@ -25,7 +25,7 @@ public class StudentGetController {
 	public List<Student> getAllStudents(){
 		
 		try {
-			return studentService.getStudentList();
+			return studentService.getList();
 		} catch(Exception e) {
 			log.warn(e.getMessage());
 			return new ArrayList<>();

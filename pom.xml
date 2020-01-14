@@ -18,6 +18,8 @@
 	<name>demo-one-server</name>
 	<description>Demo project for Spring Boot</description>
 
+	<packaging>jar</packaging>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
